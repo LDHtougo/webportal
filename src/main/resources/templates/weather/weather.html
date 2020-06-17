@@ -32,7 +32,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" th:href="@{/css/ress.css}"
 	href="../static/css/ress.css">
-<link rel="stylesheet" th:href="@{/css/home.css}"F39800
+<link rel="stylesheet" th:href="@{/css/home.css}"
 	href="../static/css/home.css">
 
 </head>
@@ -66,32 +66,17 @@
 
 	<!-- コンテンツ -->
 	<div class="container">
-		<div class="row">
+		<div class="content-box">
+			<h1>札幌の天気予報</h1>
+			<h2>（詳細）</h2>
 
-			<div class="col-sm-6">
-				<div class="content-box">
-					<h2>住所検索 - 郵便番号</h2>
-					<form method="post" th:action="@{/zip}">
-						<div class="input-group">
-							<input type="number" class="form-control" name="zipcode"
-								placeholder="郵便番号 : XXXXXXX"> <span
-								class="input-group-btn">
-								<button type="submit" class="btn btn-info">検索</button>
-							</span>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="col-sm-6">
-                <div class="content-box">
-                    <h2>札幌の天気予報</h2>
-                    <form method="post" th:action="@{/weather}">
-                        <div class="input-button">
-                                <button type="submit" class="btn bg-info">もっと詳しく</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+			<!-- 基本は1件だが、API構造に従い繰り返し構文とする -->
+			<ul th:each="forecast : ${weatherEntity.forecasts}" th:object="${forecast}">
+				<li><h3><span th:text="*{dateLabel}"></span></h3></li>
+				<li><span th:text="*{telop}"></span></li>
+			</ul>
+			<p th:text="*{weatherEntity.text}"></p>
+
 		</div>
 	</div>
 
