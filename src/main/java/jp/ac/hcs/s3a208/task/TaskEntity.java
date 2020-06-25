@@ -1,6 +1,5 @@
 package jp.ac.hcs.s3a208.task;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
