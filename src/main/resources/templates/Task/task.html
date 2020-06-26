@@ -35,6 +35,8 @@
 <link rel="stylesheet" th:href="@{/css/home.css}"
 	href="../static/css/home.css">
 
+<script th:src="@{/js/task.js}"></script>
+
 </head>
 
 <body th:classappend="${session.isDarkmode} ? 'mode-dark'">
@@ -69,13 +71,15 @@
 
 	<hr>
 
-	<form method="post"  th:action="@{/task/insert}">
-		<div class="input-group">
+	<form method="post"  th:action="@{/task/insert}" name="task_form">
+		<div class="input-group">>
+			<input type="text" class="form-control" name="task_name" placeholder="タスク名">
 			<input type="text" class="form-control" name="comment" placeholder="タスク内容">
 			<input type="date" class="form-control" name="limitday">
+
 			<span class="input-group-btn">
-			<button type="submit" class="btn btn-warning">追加</button>
-			
+			<button type="submit" class="btn btn-warning" onclick="return check()">追加</button> <!-- クリックをしたときに何をするか trueなら次の処理falseなら処理が止まる -->
+
 			</span>
 		</div>
 	</form>
@@ -84,7 +88,9 @@
 
 		<!-- 並び替えが出来ると尚良い -->
 		<ul th:each="task : ${taskEntity.tasklist}" th:object="${task}">
-			<li><a th:href="@{'/task/delete/' +*{id}}" onclick="return confirm('完了したタスクを削除します。よろしいですか？')">
+			<li>
+			<span th:text="*{task_name}"></span>
+			<a th:href="@{'/task/delete/' +*{id}}" onclick="return confirm('完了したタスクを削除します。よろしいですか？')">
 			<span th:text="*{comment}"></span></a>
 			<span th:text="*{limitday}"></span></li>
 		</ul>

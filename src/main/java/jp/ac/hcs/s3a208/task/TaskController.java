@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * タスク情報に関する機能・画面を制御する
+ * タスク情報に関する機能・画面を制御する.
  */
-
-
 @Slf4j
 @Controller
 public class TaskController {
@@ -29,7 +27,7 @@ public class TaskController {
 		TaskService taskService;
 
 		/**
-		 * タスク一覧画面を表示する
+		 * タスク一覧画面を表示する.
 		 * @param prinsipal ログイン情報
 		 * @param model
 		 * @return タスク一覧画面
@@ -46,10 +44,16 @@ public class TaskController {
 		}
 
 		/**
-		 *新規データを登録する
+		 * タスク登録処理を行う.
+		 * @param task_name タスク名
+		 * @param comment コメント
+		 * @param limitday 日時
+		 * @param principal ログイン情報
+		 * @param model
+		 * @return タスク一覧画面
 		 */
 	@PostMapping("/task/insert")//（）の中はURLを記載している
-	public String postTaskInsert(@RequestParam("comment")String comment,@RequestParam("limitday")String limitday,
+	public String postTaskInsert(@RequestParam("task_name")String task_name,@RequestParam("comment")String comment,@RequestParam("limitday")String limitday,
 			Principal principal,
 			Model model) {
 
@@ -72,6 +76,7 @@ public class TaskController {
 		data.setUser_id(principal.getName());
 		data.setComment(comment);
 		data.setLimitday(dateLimitday);
+		data.setTask_name(task_name);
 
 		boolean result = taskService.insertOne(data);
 
@@ -85,7 +90,11 @@ public class TaskController {
 	}
 
 	/**
-	 *登録データの取得を行う
+	 * タスクの削除処理を行う.
+	 * @param id ユーザID
+	 * @param principal ログイン情報
+	 * @param model
+	 * @return タスク一覧画面
 	 */
 	@GetMapping("/task/delete/{id:.+}")
 	public String getTaskDelete(@PathVariable("id") int id, Principal principal,Model model) {
@@ -102,14 +111,6 @@ public class TaskController {
 			model.addAttribute("result","タスク削除失敗");
 		}
 		return getTaskList(principal,model);
-
-	}
-
-	/**
-	 * ソートをする画面
-	 */
-	@GetMapping("task/sort/{id:.+")
-	pubilc String getTasksort(@PathVariable("id") int id , ) {
 
 	}
 }

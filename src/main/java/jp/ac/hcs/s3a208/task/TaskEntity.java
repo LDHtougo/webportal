@@ -7,7 +7,7 @@ import lombok.Data;
 
 /**
  * タスク情報
- *各項目のデータ仕様も併せて管理する
+ * 各項目のデータ仕様も併せて管理する.
  */
 @Data
 public class TaskEntity {

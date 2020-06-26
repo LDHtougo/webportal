@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
  * 各項目のデータ仕様については、APIの仕様を参照とする
  * - http://weather.livedoor.com/weather_hacks/webservice
  *
-*/
+ */
 
 
 @Data

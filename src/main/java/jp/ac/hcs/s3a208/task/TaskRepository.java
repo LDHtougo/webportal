@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * タスク情報のデータを管理する
+ * タスク情報のデータを管理する.
  * - Taskテーブル
  */
 @Repository
@@ -23,7 +23,7 @@ public class TaskRepository {
 	private static final String SQL_SELECT_ALL = "SELECT * FROM task WHERE user_id = ? ORDER BY limitday";
 
 	/** SQL 1件追加 */
-	private static final String SQL_INSERT_ONE = "INSERT INTO task(id, user_id, comment, limitday) VALUES((SELECT MAX(id) + 1 FROM task), ?, ?, ?)";
+	private static final String SQL_INSERT_ONE = "INSERT INTO task(id, user_id, comment, limitday, task_name) VALUES((SELECT MAX(id) + 1 FROM task), ?, ?, ?, ?)";
 
 	/** SQL 1件削除 */
 	private static final String SQL_DELETE_ONE = "DELETE FROM task WHERE id = ?";
@@ -32,7 +32,7 @@ public class TaskRepository {
 	JdbcTemplate jdbc;
 
 	/**
-	 * TaskテーブルからユーザIDをキーに全データを取得
+	 * TaskテーブルからユーザIDをキーに全データを取得する.
 	 * @param user_id 検索するユーザID
 	 * @return TaskEntity
 	 * @throws DataAccessException
@@ -44,7 +44,7 @@ public class TaskRepository {
 	}
 
 	/**
-	 * Taskテーブルから取得したデータをTaskEntity形式にマッピングする
+	 * Taskテーブルから取得したデータをTaskEntity形式にマッピングする.
 	 * @param resultList Taskテーブルから取得したデータ
 	 * @return TaskEntity
 	 */
@@ -57,14 +57,14 @@ public class TaskRepository {
 					data.setUser_id((String) map.get("user_id"));
 					data.setComment((String) map.get("comment"));
 					data.setLimitday((Date) map.get("limitday"));
-
+					data.setTask_name((String) map.get("task_name"));
 					entity.getTasklist().add(data);
 			}
 			return entity;
 	}
 
 	/**
-	 * Taskテーブルにデータを一件追加する
+	 * Taskテーブルにデータを一件追加する.
 	 * @param data 追加するユーザ情報
 	 * @return 追加データ数
 	 * @throws DataAccessException
@@ -73,12 +73,13 @@ public class TaskRepository {
 		int rowNumber = jdbc.update(SQL_INSERT_ONE,
 						data.getUser_id(),
 						data.getComment(),
-						data.getLimitday());
+						data.getLimitday(),
+						data.getTask_name());
 		return rowNumber;
 	}
 
 	/**
-	 * Taskテーブルのデータを一件削除する
+	 * Taskテーブルのデータを一件削除する.
 	 * @param id削除するタスクID
 	 * @return 削除データ数
 	 * @throws DataAccessException

@@ -35,4 +35,10 @@ public class TaskData {
 	 */
 	private Date limitday;
 
+	/**
+	 * タスク名
+	 * 必須入力
+	 */
+	private String task_name;
+
 }
