@@ -137,4 +137,56 @@ public class UserController {
 		return getUserList(model);
 	}
 
+	@PostMapping("/user/userAdmin")
+	public String getuserAdmin(Model model) {
+
+		UserEntity userEntity = userService.selectAll();
+		model.addAttribute("userEntity", userEntity);
+
+		return "user/userList";
+	}
+
+	@GetMapping("/user/userCreate")
+	public String getUserCreate(@ModelAttribute UserForm form,Model model) {
+		// ラジオボタンの準備
+		radioRole = initRadioRole();
+		model.addAttribute("radioRole", radioRole);
+		return "user/userCreate";
+	}
+	@PostMapping("/user/userCreate")
+	public String getUserCreate(@ModelAttribute @Validated UserForm form,
+			BindingResult bindingResult,
+			Principal principal,
+			Model model) {
+
+
+		if(bindingResult.hasErrors()) {//入力チェック
+			return getUserCreate(form,model);
+		}
+
+		// ダークモードは更新しない為、設定無し
+		UserData data = new UserData();
+		data.setUser_id(form.getUser_id());
+		data.setPassword(form.getPassword());
+		data.setUser_name(form.getUser_name());
+		data.setRole(form.getRole());
+
+		boolean result = false;
+
+		result = userService.insertOne(data);
+
+
+		if (result) {
+			log.info("[" + principal.getName() + "]ユーザ登録成功");
+			model.addAttribute("result", "ユーザ登録成功");
+		} else {
+			log.warn("[" + principal.getName() + "]ユーザ登録失敗");
+			model.addAttribute("result", "ユーザ登録失敗");
+		}
+
+		return getUserList(model);
+
+
+	}
+
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
 <head>
 
 <meta charset="UTF-8">
@@ -134,7 +135,7 @@
 					</form>
 				</div>
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-6" sec:authorize="hasRole('ADMIN')">
 				<!-- 管理者のみのコンテンツ -->
 				<div class="content-box">
 					<h2>ユーザ管理</h2>

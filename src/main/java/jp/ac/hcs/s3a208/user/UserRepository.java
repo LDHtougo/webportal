@@ -28,6 +28,12 @@ public class UserRepository {
 	/** SQL 1件更新 管理者 パスワード更新無 */
 	private static final String SQL_UPDATE_ONE = "UPDATE m_user SET user_name = ?, role = ? WHERE user_id = ?";
 
+	/** SQL 1件追加 管理者 */
+	private static final String SQL_INSERT_ONE = "INSERT INTO m_user(user_id,encrypted_password,user_name,darkmode,role)VALUES(?,?,?,?,?)";
+
+	/** SQL 1件さｋ 管理者 */
+	private static final String SQL_DELETE_ONE = "DELETE FEOM m_user WHERE user_id = ?";
+
 	@Autowired
 	private JdbcTemplate jdbc;
 
@@ -107,5 +113,22 @@ public class UserRepository {
 				userData.getUser_id());
 		return rowNumber;
 	}
+
+	public int insertOne(UserData data) throws DataAccessException {
+		int rowNumber = jdbc.update(SQL_INSERT_ONE,
+				data.getUser_id(),
+				passwordEncoder.encode(data.getPassword()),
+				data.getUser_name(),
+				data.isDarkmode(),
+				data.getRole());
+		return rowNumber;
+	}
+	public int deleteOne(String user_id) throws DataAccessException {
+		int rowNumber = jdbc.update(SQL_DELETE_ONE,user_id);
+		return rowNumber;
+	}
+
+
+
 
 }

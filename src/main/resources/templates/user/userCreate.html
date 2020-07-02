@@ -66,16 +66,20 @@
 	</nav>
 
 	<!-- contents -->
+	<!-- 管理者が作成ボタンを押した際に遷移する画面 -->
 	<div class="container">
 		<div class="content-box">
 			<h2>ユーザ詳細</h2>
 			<div class="input-form">
-				<form method="post" th:action="@{/user/userDetail}"
-					th:object="${userFormForUpdate}">
+				<form method="post" th:action="@{/user/userCreate}"
+					th:object="${userForm}">
 
-					<label for="user_id">ユーザID(メールアドレス)</label>
+					<!--  <label for="user_id">ユーザID(メールアドレス)</label>
 					<p class="view-mail" th:text="*{user_id}"></p>
-					<input type="hidden" name="user_id" th:value="*{user_id}">
+					<input type="hidden" name="user_id" th:value="*{user_id}">-->
+					<label for="user_id">ユーザID(メールアドレス)</label> <input type="text"
+					class="form-control input-box" name="user_id"
+					placeholder="xxxxxxx@xxx.xxx">
 
 					<hr>
 
@@ -86,7 +90,6 @@
 							placeholder="xxxxxxxx" th:field="*{password}"> <span
 							class="text-danger" th:if="${#fields.hasErrors('password')}"
 							th:errors="*{password}">password error</span>
-						<p>※未入力の場合、前のパスワードを維持します</p>
 					</div>
 
 					<label for="user_name">ユーザ名</label>
@@ -97,6 +100,17 @@
 							class="text-danger" th:if="${#fields.hasErrors('user_name')}"
 							th:errors="*{user_name}">user_name error</span>
 					</div>
+					<label for="role">権限設定</label>
+					<div class="form-group input-box">
+						<div th:each="item : ${radioRole}">
+							<input type="radio" name="radioRole" th:text="${item.key}"
+								th:value="${item.value}" th:field="*{role}">
+						</div>
+						<span class="text-danger" th:if="${#fields.hasErrors('role')}"
+							th:errors="*{role}">role error</span>
+					</div>
+
+					<button type="submit" class="btn btn-warning" name="insert">登録</button>
 				</form>
 			</div>
 		</div>

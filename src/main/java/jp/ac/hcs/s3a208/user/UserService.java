@@ -52,5 +52,15 @@ public class UserService {
 		boolean result = (rowNumber > 0) ? true : false;
 		return result;
 	}
+	/**
+	 * (管理用)ユーザ情報を1件更新する(パスワード更新無).
+	 * @param userData 更新するユーザ情報(パスワードは設定しない)
+	 * @return 処理結果(成功:true, 失敗:false)
+	 */
+	public boolean insertOne(UserData userData) {
+		int rowNumber = userRepository.insertOne(userData);
+		boolean result = (rowNumber > 0) ? true : false;
+		return result;
+	}
 
 }

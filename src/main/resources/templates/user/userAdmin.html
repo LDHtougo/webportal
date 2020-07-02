@@ -66,11 +66,12 @@
 	</nav>
 
 	<!-- contents -->
+	<!-- 管理者が詳細ボタンを押した際に遷移する画面 -->
 	<div class="container">
 		<div class="content-box">
 			<h2>ユーザ詳細</h2>
 			<div class="input-form">
-				<form method="post" th:action="@{/user/userDetail}"
+				<form method="post" th:action="@{/user/userAdmin}"
 					th:object="${userFormForUpdate}">
 
 					<label for="user_id">ユーザID(メールアドレス)</label>
