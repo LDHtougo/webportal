@@ -32,7 +32,7 @@ public class UserRepository {
 	private static final String SQL_INSERT_ONE = "INSERT INTO m_user(user_id,encrypted_password,user_name,darkmode,role)VALUES(?,?,?,?,?)";
 
 	/** SQL 1件さｋ 管理者 */
-	private static final String SQL_DELETE_ONE = "DELETE FEOM m_user WHERE user_id = ?";
+	private static final String SQL_DELETE_ONE = "DELETE FROM m_user WHERE user_id = ?";
 
 	@Autowired
 	private JdbcTemplate jdbc;

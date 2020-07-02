@@ -63,4 +63,13 @@ public class UserService {
 		return result;
 	}
 
+	/**
+	 *削除
+	 */
+	public boolean deleteOne(String user_id) {
+		int rowNumber = userRepository.deleteOne(user_id);
+		boolean result = (rowNumber > 0) ? true : false;
+		return result;
+	}
+
 }

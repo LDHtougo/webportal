@@ -189,4 +189,31 @@ public class UserController {
 
 	}
 
+	/**
+	 * 削除ボタン押下後のコード
+	 */
+	@PostMapping(value = "/user/userDelete")
+	public String postUserDetailDelete(@ModelAttribute UserFormForUpdate form,
+			String user_id,
+			Principal principal,
+			Model model) {
+
+
+		boolean result = false;
+
+
+		result = userService.deleteOne(user_id);
+
+		if (result) {
+			log.info("[" + principal.getName() + "]ユーザ削除成功");
+			model.addAttribute("result", "ユーザ削除成功");
+		} else {
+			log.warn("[" + principal.getName() + "]ユーザ削除失敗");
+			model.addAttribute("result", "ユーザ削除失敗");
+		}
+
+		return getUserList(model);
+	}
+
+
 }
