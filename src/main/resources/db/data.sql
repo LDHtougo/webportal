@@ -5,9 +5,13 @@ DELETE FROM task;
 /* ユーザマスタのデータ（ADMIN権限） PASS:pasword */
 INSERT INTO m_user (user_id, encrypted_password, user_name, darkmode, role)
 VALUES('yamada@xxx.co.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', '山田太郎', false, 'ROLE_ADMIN');
+/* ユーザマスタのデータ（ADMIN権限） PASS:pasword */
+INSERT INTO m_user (user_id, encrypted_password, user_name, darkmode, role)
+VALUES('s3a208katou@xxx.co.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', '加藤聖貴', false, 'ROLE_ADMIN');
 /* ユーザマスタのデータ（一般権限） PASS:pasword */
 INSERT INTO m_user (user_id, encrypted_password, user_name, darkmode, role)
 VALUES('tamura@xxx.co.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', '田村', false, 'ROLE_GENERAL');
+/* ユーザマスタのデータ（一般権限） PASS:pasword */
 INSERT INTO m_user (user_id, encrypted_password, user_name, darkmode, role)
 VALUES('suzuki@xxx.co.jp', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', '鈴木', true, 'ROLE_GENERAL');
 
