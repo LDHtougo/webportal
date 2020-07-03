@@ -31,7 +31,7 @@ public class UserRepository {
 	/** SQL 1件追加 管理者 */
 	private static final String SQL_INSERT_ONE = "INSERT INTO m_user(user_id,encrypted_password,user_name,darkmode,role)VALUES(?,?,?,?,?)";
 
-	/** SQL 1件さｋ 管理者 */
+	/** SQL 1件削除 管理者 */
 	private static final String SQL_DELETE_ONE = "DELETE FROM m_user WHERE user_id = ?";
 
 	@Autowired
@@ -114,6 +114,12 @@ public class UserRepository {
 		return rowNumber;
 	}
 
+	/**
+	 *
+	 * @param data
+	 * @return
+	 * @throws DataAccessException
+	 */
 	public int insertOne(UserData data) throws DataAccessException {
 		int rowNumber = jdbc.update(SQL_INSERT_ONE,
 				data.getUser_id(),

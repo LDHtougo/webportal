@@ -24,7 +24,7 @@ public class UserForm {
 
 	/** パスワード */
 	@NotBlank(message = "{require_check}")
-	@Length(min = 4,max = 100,message = "{length_check")
+	@Length(min = 4,max = 100,message = "{length_check}")
 	@Pattern(regexp = "^[a-zA-Z0-9]+$",message = "{pattern_check}")
 	private String password;
 

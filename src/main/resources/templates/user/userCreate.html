@@ -74,12 +74,14 @@
 				<form method="post" th:action="@{/user/userCreate}"
 					th:object="${userForm}">
 
-					<!--  <label for="user_id">ユーザID(メールアドレス)</label>
-					<p class="view-mail" th:text="*{user_id}"></p>
-					<input type="hidden" name="user_id" th:value="*{user_id}">-->
-					<label for="user_id">ユーザID(メールアドレス)</label> <input type="text"
-					class="form-control input-box" name="user_id"
-					placeholder="xxxxxxx@xxx.xxx">
+					<label for="user_id">ユーザID（メールアドレス）</label>
+					<div class="form-group input-box"
+						th:classappend="${#fields.hasErrors('user_id')} ? 'has-error'">
+						<input type="user_id" class="form-control" name="user_id"
+							placeholder="xxxxxxxx" th:field="*{user_id}"> <span
+							class="text-danger" th:if="${#fields.hasErrors('user_id')}"
+							th:errors="*{user_id}">password error</span>
+					</div>
 
 					<hr>
 
