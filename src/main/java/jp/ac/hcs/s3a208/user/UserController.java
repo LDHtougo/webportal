@@ -29,7 +29,7 @@ public class UserController {
 	/** 権限のラジオボタン用変数 */
 	private Map<String, String> radioRole;
 
-	/** 権限のラジオボタンを初期化する処理 */
+	/** 権限のラジオボタンを初期化する. */
 	private Map<String, String> initRadioRole() {
 		Map<String, String> radio = new LinkedHashMap<>();
 		radio.put("管理", "ROLE_ADMIN");
@@ -137,6 +137,11 @@ public class UserController {
 		return getUserList(model);
 	}
 
+	/**
+	 * ユーザリストを全件出力する.
+	 * @param model
+	 * @return ユーザリスト
+	 */
 	@PostMapping("/user/userAdmin")
 	public String getuserAdmin(Model model) {
 
@@ -146,6 +151,12 @@ public class UserController {
 		return "user/userList";
 	}
 
+	/**
+	 * (管理者用)ユーザ作成処理.
+	 * @param form 登録に必要な情報
+	 * @param model
+	 * @return user/userCreate
+	 */
 	@GetMapping("/user/userCreate")
 	public String getUserCreate(@ModelAttribute UserForm form,Model model) {
 		// ラジオボタンの準備
@@ -153,6 +164,15 @@ public class UserController {
 		model.addAttribute("radioRole", radioRole);
 		return "user/userCreate";
 	}
+
+	/**
+	 * 値を受け取った後の更新処理.
+	 * @param form 登録に必要な情報
+	 * @param bindingResult
+	 * @param principal ログイン情報
+	 * @param model
+	 * @return ユーザリスト
+	 */
 	@PostMapping("/user/userCreate")
 	public String getUserCreate(@ModelAttribute @Validated UserForm form,
 			BindingResult bindingResult,
@@ -190,7 +210,12 @@ public class UserController {
 	}
 
 	/**
-	 * 削除ボタン押下後のコード
+	 * 削除ボタン押下後.
+	 * @param form 更新時に必要な登録情報
+	 * @param user_id ユーザID
+	 * @param principal ログイン情報
+	 * @param model
+	 * @return ユーザリスト
 	 */
 	@PostMapping(value = "/user/userDelete")
 	public String postUserDetailDelete(@ModelAttribute UserFormForUpdate form,

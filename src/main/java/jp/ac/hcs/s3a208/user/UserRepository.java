@@ -115,9 +115,9 @@ public class UserRepository {
 	}
 
 	/**
-	 *
-	 * @param data
-	 * @return
+	 *(管理用)Userテーブルのデータを1件追加する.
+	 * @param data 追加するユーザの情報
+	 * @return 更新データ数
 	 * @throws DataAccessException
 	 */
 	public int insertOne(UserData data) throws DataAccessException {
@@ -129,6 +129,13 @@ public class UserRepository {
 				data.getRole());
 		return rowNumber;
 	}
+
+	/**
+	 * (管理用)Userテーブルのデータを１件削除する.
+	 * @param user_id ユーザID
+	 * @return 更新データ数
+	 * @throws DataAccessException
+	 */
 	public int deleteOne(String user_id) throws DataAccessException {
 		int rowNumber = jdbc.update(SQL_DELETE_ONE,user_id);
 		return rowNumber;

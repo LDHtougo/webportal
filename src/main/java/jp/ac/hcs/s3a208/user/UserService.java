@@ -32,7 +32,7 @@ public class UserService {
 	}
 
 	/**
-	 * (管理用)ユーザ情報を1件更新する(パスワード更新有).
+	 * (管理者用)ユーザ情報を1件更新する(パスワード更新有).
 	 * @param userData 更新するユーザ情報(パスワードは平文)
 	 * @return 処理結果(成功:true, 失敗:false)
 	 */
@@ -43,7 +43,7 @@ public class UserService {
 	}
 
 	/**
-	 * (管理用)ユーザ情報を1件更新する(パスワード更新無).
+	 * (管理者用)ユーザ情報を1件更新する(パスワード更新無).
 	 * @param userData 更新するユーザ情報(パスワードは設定しない)
 	 * @return 処理結果(成功:true, 失敗:false)
 	 */
@@ -53,7 +53,7 @@ public class UserService {
 		return result;
 	}
 	/**
-	 * (管理用)ユーザ情報を1件更新する(パスワード更新無).
+	 * (管理者用)ユーザ情報を1件更新する(パスワード更新無).
 	 * @param userData 更新するユーザ情報(パスワードは設定しない)
 	 * @return 処理結果(成功:true, 失敗:false)
 	 */
@@ -64,7 +64,9 @@ public class UserService {
 	}
 
 	/**
-	 *削除
+	 * (管理者用)ユーザ情報を１件削除する.
+	 * @param user_id ユーザID
+	 * @return 処理結果(成功:true, 失敗:false)
 	 */
 	public boolean deleteOne(String user_id) {
 		int rowNumber = userRepository.deleteOne(user_id);

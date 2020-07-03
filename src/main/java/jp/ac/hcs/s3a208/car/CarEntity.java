@@ -8,7 +8,6 @@ import lombok.Data;
 /**
  * 車の検索結果情報.
  * 各項目のデータ仕様については、APIの仕様を参照とする.
- * - http://webservice.recruit.co.jp/hotpepper/reference.html
  * - http://webservice.recruit.co.jp/carsensor/usedcar/v1/
  */
 @Data
