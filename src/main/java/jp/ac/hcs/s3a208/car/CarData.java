@@ -19,7 +19,12 @@ public class CarData {
 	/** ブランド */
 	private String brand;
 
-	/** モデル */
+	/** モデル(車名) */
 	private String model;
 
+	/** 価格 */
+	private String price;
+
+	/** 説明文 */
+	private String desc;
 }

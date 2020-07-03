@@ -90,7 +90,7 @@
                     <h2>札幌の天気予報</h2>
                     <form method="post" th:action="@{/weather}">
                         <div class="input-button">
-                                <button type="submit" class="btn bg-info">もっと詳しく</button>
+                                <button type="submit" class="btn btn-info">もっと詳しく</button>
                         </div>
                     </form>
                 </div>
@@ -101,7 +101,7 @@
 					<form method="post" th:action="@{/task/tasklist}">
 						<div class="input-button"><span
 								class="input-group-btn">
-								<button type="submit" class="btn bg-info">もっと詳しく</button>
+								<button type="submit" class="btn btn-info">もっと詳しく</button>
 							</span>
 						</div>
 					</form>
@@ -116,20 +116,6 @@
 								placeholder="店舗名：XXXXX"> <span
 								class="input-group-btn">
 								<button type="submit" class="btn btn-info" onclick = "return check()">検索</button>
-							</span>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="content-box">
-					<h2>車検索（未作成）</h2>
-					<form method="post" th:action="@{/car}">
-						<div class="input-group">
-							<input type="text" class="form-control" name="carname"
-								placeholder="車名：XXXXX"> <span
-								class="input-group-btn">
-								<button type="submit" class="btn btn-info">検索</button>
 							</span>
 						</div>
 					</form>
